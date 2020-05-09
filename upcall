@@ -1,0 +1,7 @@
+#!/bin/bash
+count=$(</opt/rclone/scripts/upcount)
+echo "$count"
+size=$(df -k /dev/sda2 | tail -1 | awk '{print $3}')
+if (($size<734003200)); then
+bash /opt/rclone/scripts/upload_cloud${count}
+fi
