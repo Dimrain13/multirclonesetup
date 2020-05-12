@@ -1,0 +1,28 @@
+[Unit]
+Description=RClone3 Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+Environment=RCLONE_CONFIG=/root/.config/rclone/rclone.conf
+KillMode=none
+RestartSec=5
+ExecStart=/usr/bin/rclone mount gcrypt3: /mnt/drive3 \
+--allow-other \
+--dir-cache-time 1000h \
+--log-level INFO \
+--log-file /opt/rclone/logs/rclone3.log \
+--poll-interval 15s \
+--user-agent annon \
+--timeout 1h \
+--umask 002 \
+--rc \
+--rc-addr 127.0.0.1:5575
+ExecStop=/bin/fusermount -uz /mnt/drive3
+Restart=on-failure
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
