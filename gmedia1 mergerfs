@@ -8,7 +8,8 @@ RequiresMountsFor=/mnt/data
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/mergerfs /mnt/drive1/:/mnt/drive2/:/mnt/drive3/:/mnt/drive4/:/mnt/drive0/:/local/ /mnt/data -o rw,async_read=false,use_ino,allow_other,func.getattr=newest,category.action=all,category.create=ff,cache.files=partial,dropcacheonclose=true
+ExecStart=/usr/bin/mergerfs /local/:/mnt/drive0/:/mnt/drive1/:/mnt/drive2/:/mnt/drive3/:/mnt/drive4/ /mnt/data/ -o rw,async_read=false,use_ino,allow_other,func.getattr=newest,category.action=all,category.create=ff,cache.files=partial,dropcacheonclose=true
+
 KillMode=process
 Restart=on-failure
 
