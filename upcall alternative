@@ -1,0 +1,10 @@
+#!/bin/bash
+#This is to only point at the finished folder to make sure the 700GB is maxed outinstead of the checking the whole disk.
+
+count=$(</opt/rclone/scripts/upcount)
+size=$(du -ks /local | awk '{print $1;}')
+if [ "$size" -gt "734003200" ]; then
+bash /opt/rclone/scripts/upload_cloud${count}
+else
+echo "Not full yet"
+fi
