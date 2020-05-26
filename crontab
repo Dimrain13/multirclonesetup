@@ -1,1 +1,1 @@
-0 */2 * * * bash /opt/rclone/scripts/upcall
+*/15 * * * * bash /opt/rclone/scripts/upcall
