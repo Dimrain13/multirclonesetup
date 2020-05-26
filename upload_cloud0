@@ -9,6 +9,6 @@ if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then
         exit; fi
 
 # Move older local files to the cloud
-/usr/bin/rclone move /local/ gcrypt0:/ --log-file /opt/rclone/logs/upload0.log -v --exclude-from /opt/rclone/scripts/excludes --delete-empty-src-dirs --user-agent root --fast-list --max-transfer 700G
+/usr/bin/rclone move /local/ gcrypt0:/ --log-file /opt/rclone/logs/upload0.log -v --exclude-from /opt/rclone/scripts/excludes --delete-empty-src-dirs --user-agent root --fast-list --max-transfer 700G --bwlimit "Mon-02:00,off Mon-06:00,37.5M Tue-02:00,off Tue-06:00,37.5M Wed-02:00,off Wed-06:00,37.5M Thu-02:00,off Thu-06:00,37.5M Fri-02:00,off Fri-06:00,37.5M Sat-02:00,off Sat-06:00,37.5M Sun-02:00,off Sun-06:00,37.5M"
 rm /opt/rclone/scripts/upcount
 echo "1" >> /opt/rclone/scripts/upcount
