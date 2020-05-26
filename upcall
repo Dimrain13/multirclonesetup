@@ -14,7 +14,7 @@ echo $pid 1>&200
 
 count=$(</opt/rclone/scripts/upcount)
 size=$(df -k /dev/sda2 | tail -1 | awk '{print $3}')
-if [ "$size" -gt "534003200" ]; then
+if [ "$size" -gt "734003200" ]; then
 bash /opt/rclone/scripts/upload_cloud${count}
 else
 echo "Not full yet"
