@@ -1,5 +1,17 @@
 #!/bin/bash
-#This is to only point at the finished folder to make sure the 700GB is maxed outinstead of the checking the whole disk.
+#This is to only point at the finished folder to make sure the 700GB is maxed out there instead of the checking the whole disk.
+
+# stop on errors
+set -e
+
+scriptname=$(basename $0)
+pidfile="/var/run/${scriptname}"
+
+# lock it
+exec 200>$pidfile
+flock -n 200 || exit 1
+pid=$$
+echo $pid 1>&200
 
 count=$(</opt/rclone/scripts/upcount)
 size=$(du -ks /local | awk '{print $1;}')
